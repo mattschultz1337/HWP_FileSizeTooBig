@@ -195,8 +195,8 @@ for i, tooLarge in allFiles.iterrows():
   if stakeHolder=="Administrators":
       emailRecip = ""
       tooLarge['Emailed'] = "NONE"
-  if stakeHolder=="pezzutikera":
-    emailRecip = "kerapezzuti@hwpnj.com"
+  if stakeHolder=="REDACTED":
+    emailRecip = "REDACTED@hwpnj.com"
   fileLink = filePath.replace("\\", "/")
   fileLink = fileLink.replace(" ", "%20")
   if fileLink[:1] == "X":
@@ -228,24 +228,24 @@ for i, tooLarge in allFiles.iterrows():
       fileLink = "hwp_history/" + fileLink
       fileLink = "/" + fileLink
 
-  if stakeHolder == "hegartyjo":
-      tooLarge['Emailed'] = "N/A John's File"
-      print("John Hegarty Owned File: ")
-      johnSheet = pd.read_excel (r'T:\Technology\Server Cleanup\JohnHegarty_FilesOver100MB.xlsx',  dtype={'Size - MB': float, 'Directory': str, 'Name': str, 'Size - Bytes': int, 'Notes': str})
+  if stakeHolder == "REDACTED":
+      tooLarge['Emailed'] = "N/A REDACTED's File"
+      print("REDACTED Owned File: ")
+      johnSheet = pd.read_excel (r'T:\Technology\Server Cleanup\REDACTED_FilesOver100MB.xlsx',  dtype={'Size - MB': float, 'Directory': str, 'Name': str, 'Size - Bytes': int, 'Notes': str})
       if ((johnSheet['Directory'] == filePath) & (johnSheet['Name'] == fileName)).any():
           print("Already noted in John's File")
       else:
-          print("Adding to John's File")
+          print("Adding to REDACTED's File")
           newJohnFile = pd.DataFrame({'Directory':[tooLarge['Directory']],'Name':[tooLarge['Name']], 'Notes':[""], 'Size - Bytes':[tooLarge['Length']],'Size - MB':[tooLarge['Size - MB']]})
           # print(johnSheet)
           # print(newJohnFile)
           johnSheet = johnSheet.append(newJohnFile, ignore_index=True, sort=False)
           johnSheet=johnSheet.drop(columns=['Unnamed: 0'])
-          johnSheet.to_excel(r'T:\Technology\Server Cleanup\JohnHegarty_FilesOver100MB.xlsx')
+          johnSheet.to_excel(r'T:\Technology\Server Cleanup\REDACTED_FilesOver100MB.xlsx')
   if tooLarge['Directory'] in current_List.Directory.values and tooLarge['Name'] in current_List.Name.values:
       tooLarge['Status'] = current_List.loc[current_List['Name']==tooLarge['Name']]['Status']
 
-  if stakeHolder != "hegartyjo" and stakeHolder!="hegartyj" and stakeHolder != "nan" and tooLarge['is_Employed']==1 and stakeHolder != "Administrators" and tooLarge['Status']==0:
+  if stakeHolder != "REDACTED" and stakeHolder!="REDACTED" and stakeHolder != "nan" and tooLarge['is_Employed']==1 and stakeHolder != "Administrators" and tooLarge['Status']==0:
    # Create Email
     const=win32com.client.constants
     olMailItem = 0x0
